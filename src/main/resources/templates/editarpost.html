@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+	<title>Blod do carlos</title>
+	<!-- CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	
+	
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
+</head>
+
+<body>
+	<header>
+		<nav class="navbar navbar-light bg-light">
+    		<a href="/posts"><span class="navbar-brand mb-0 h1">Blog Do Carlos</span></a>
+		</nav>
+	</header>
+	
+	<section>
+		
+		<div class="container" style="width: 60%; padding-bottom: 30px;">
+			
+			<nav aria-label="breadcrumb">
+  				<ol class="breadcrumb">
+    				<li class="breadcrumb-item" aria-current="page"><a href="/posts">Posts</a></li>
+    				<li class="breadcrumb-item active" aria-current="page">Editar Post</li>
+  				</ol>
+			</nav>
+			<small class="form-text text-muted">Campos Obrigatorios *</small>
+		<div>	
+			<th:block th:include="mensagemValidacao"></th:block>
+			
+			<form method="post" th:action="${Post}">
+				<div class="form-group">
+ 					 <label for="formGroupExampleInput" class="form-label">Autor: *</label>
+  						<input type="text" name="autor" th:field="*{post.autor}" class="form-control" placeholder="Autor">
+  						
+				</div>
+				<br>
+				<div class="form-group">
+  					<label for="formGroupExampleInput2" class="form-label">Titulo: *</label>
+  					<input type="text" class="form-control"  th:field="*{post.titulo}" name="titulo" placeholder="Titulo" >
+				</div>
+				<br>
+				<label for="formGroupExampleInput2" class="form-label">Texto: *</label>
+				<textarea id="summernote" type="text" class="form-control" name="texto"  th:field="*{post.texto}" placeholder="Texto"></textarea>
+				
+				
+				<br>
+				<button type="submit" class="btn btn-primary" style="margin-top: 10px">Salvar</button>
+				<a href="/posts" class="btn btn-danger" role="button" style="margin-top: 10px">Cancelar</a>
+				<br>
+				
+			</form>
+		</div>
+					
+		</div>
+		
+	</section>
+	
+	<script>
+		$('#summernote').summernote({
+			placeholder: 'Texto *',
+			tabsice: 2,
+			height: 300
+		});
+		
+	</script>
+	
+</body>
+
+
+</html>

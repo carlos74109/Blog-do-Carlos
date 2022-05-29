@@ -23,7 +23,7 @@ public class CodeBlogController {
 	@Autowired
 	CodeBlogService codeBlogService;
 	
-	@RequestMapping(value = "/posts", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView getPost() {
 		ModelAndView mv = new ModelAndView("posts");
 		List<Post> posts = codeBlogService.findAll();
@@ -65,7 +65,7 @@ public class CodeBlogController {
 		}
 		post.setData(LocalDate.now());
 		codeBlogService.save(post);
-		return "redirect:/posts";
+		return "redirect:/";
 	}
 	
 	
@@ -73,7 +73,7 @@ public class CodeBlogController {
 	public String deletePost(@PathVariable Long id, RedirectAttributes redirectAtribute) {
 		codeBlogService.delete(id);
 		redirectAtribute.addFlashAttribute("mensagemApagar", "Dado apagado com sucesso");
-		return "redirect:/posts";
+		return "redirect:/";
 	}
 	
 	
@@ -91,7 +91,7 @@ public class CodeBlogController {
    public String editar(@PathVariable Long id, Post post, RedirectAttributes redirectAtribute) {  
        codeBlogService.save(post);
        redirectAtribute.addFlashAttribute("mensagemEditar", "Post editado com sucesso!!!");
-       return "redirect:/posts";
+       return "redirect:/";
    }
    
 
